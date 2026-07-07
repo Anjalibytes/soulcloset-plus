@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://soulcloset-plus-backend.onrender.com/api/:path*"
+    }
+  ]
+}

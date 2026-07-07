@@ -1,139 +1,209 @@
-# SoulCloset+ — Full-Stack Version
+# 👕 SoulCloset+
 
-A real, standalone full-stack app: your own storage (no dependency on any
-external platform), and your own secured AI calls.
+An AI-powered digital wardrobe application that helps users organize clothing, receive personalized outfit recommendations, preserve clothing memories, and exchange garments through a sustainable community marketplace.
 
-## Architecture (what talks to what)
+---
+
+## Why I Built This
+
+Fast fashion contributes significantly to clothing waste, while many garments remain unused in our wardrobes. I built SoulCloset+ to explore how AI can encourage mindful fashion by helping users organize clothes, rediscover forgotten outfits, and exchange garments instead of buying new ones.
+
+---
+
+## Features
+
+- 👕 Digital wardrobe management
+- 🤖 AI-powered outfit recommendations (Mood Mirror)
+- 🎨 AI-generated aesthetic profile
+- 🪄 AI photo tagging for clothing items
+- 💡 AI upcycling suggestions
+- ♻️ AuraSwap clothing exchange marketplace
+- 💬 Messaging interface for swap conversations
+- ❤️ Favorites and wear tracking
+- 📝 Clothing memory journal
+- 🔐 Secure authentication with password hashing
+
+---
+
+## Screenshots
+
+### Landing Page
+
+![Landing](<img width="960" height="600" alt="Screenshot 2026-07-07 192710" src="https://github.com/user-attachments/assets/77b196af-bb80-4623-8f70-3341d94bb035" />
+
+)
+
+### Sign Up
+
+![Signup](<img width="960" height="600" alt="Screenshot 2026-07-07 192747" src="https://github.com/user-attachments/assets/22b74314-a85a-42f4-8476-fb74df789ab2" />
+)
+
+### Login
+
+![Login](<img width="960" height="600" alt="Screenshot 2026-07-07 192817" src="https://github.com/user-attachments/assets/9fc60533-5a92-4b4b-ac5a-05b8feba11ce" />
+)
+
+### My Closet
+
+![Dashboard](<img width="960" height="600" alt="Screenshot 2026-07-07 193935" src="https://github.com/user-attachments/assets/b881fa54-50ea-4064-afbb-2d5c438ef22b" />
+)
+
+### Mood Mirror
+
+![Mood Mirror](assets/screenshots/mood-mirror.png)
+
+### AuraSwap
+
+![AuraSwap](<img width="960" height="600" alt="Screenshot 2026-07-07 194008" src="https://github.com/user-attachments/assets/8d4ea3ba-f123-4c3f-ba04-5fde980ab147" />
+)
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- Tailwind CSS
+
+### Backend
+
+- Node.js
+- Express.js
+
+### AI
+
+- Anthropic Claude API
+- Claude Vision
+
+### Authentication
+
+- Password hashing using Node.js Crypto (scrypt)
+
+### Storage
+
+- JSON Database
+
+---
+
+## Project Structure
 
 ```
-Browser (React app, port 5173)
-     │  fetch("/api/...")
-     ▼
-Vite dev server proxies /api/* to →  Express backend (port 4000)
-                                          │
-                                          ├── data/db.json   (your own storage)
-                                          └── Claude API (your key, kept server-side)
+SoulCloset+
+
+├── client/
+│   ├── src/
+│   └── public/
+│
+├── server/
+│   ├── data/
+│   ├── .env.example
+│   └── server.js
+│
+└── README.md
 ```
 
-- **`/client`** — React + Vite + Tailwind. This is what renders in the browser.
-- **`/server`** — Express. Owns a JSON file database (`server/data/db.json`,
-  created automatically on first write) and is the only place that ever
-  sees your Anthropic API key.
+---
 
-Why the backend calls Claude instead of the browser doing it directly:
-an API key placed in frontend code is visible to anyone who opens dev
-tools. Routing it through your own server keeps it private.
+## Getting Started
 
-## Pages (v2 — multi-page structure)
+### 1. Clone the Repository
 
-The app is no longer a single page with tabs. It now has real routes:
+```bash
+git clone https://github.com/Anjalibytes/soulcloset-plus.git
 
-- `/` — Landing page (marketing-style intro)
-- `/signup` — simple name/email form (no password, no real backend account system yet — stored in the browser only)
-- `/closet` — your wardrobe (protected: redirects to `/signup` if not "logged in")
-- `/mood` — Mood Mirror (protected)
-- `/profile` — Aesthetic Profile (protected)
-- `/swap` — AuraSwap (protected)
+cd soulcloset-plus
+```
 
-"Protected" here just means: if there's no name saved in the browser yet,
-visiting these pages redirects you to `/signup`. This is not real
-authentication — there's no password, and anyone could still hit the
-backend's `/api/...` routes directly. If you want real accounts later,
-the next step is a `users` table on the backend with hashed passwords
-and a login endpoint, replacing `client/src/lib/useAuth.js`.
-
-## What's new in this version (v5)
-
-**Real authentication** — Signup/Login now hit real backend endpoints
-(`/api/auth/signup`, `/api/auth/login`). Passwords are hashed with Node's
-built-in `scrypt` (never stored in plain text) and checked properly on
-login. Known limitation: there's no token-verification middleware on the
-other API routes yet (`/api/items`, `/api/messages`, etc. don't check
-who's asking) — the login system itself is real, but nothing enforces
-"only the owner can edit their own closet" yet. That's the natural next
-step if you keep building this.
-
-**AI photo-tagging** — when you upload a clothing photo, it's sent to
-Claude's vision capability, which guesses type/fabric/condition/aesthetic
-automatically. You can still override any of its guesses before saving.
-
-**Upcycling suggestions** — an "Upcycle idea" button on each closet card
-asks the AI for a short repair or upcycling idea based on that item's
-fabric and condition.
-
-## Step 1 — Get an Anthropic API key
-
-1. Go to https://console.anthropic.com
-2. Sign up / log in, go to "API Keys", create a new key
-3. Copy it somewhere safe (you can't view it again after creating it)
-
-## Step 2 — Set up the backend
+### 2. Backend Setup
 
 ```bash
 cd server
+
 npm install
-cp .env.example .env
 ```
 
-Open `.env` and paste your real key:
+Create a `.env` file.
+
 ```
-ANTHROPIC_API_KEY=sk-ant-xxxxxxxx
+ANTHROPIC_API_KEY=YOUR_API_KEY
 ```
 
-Then start it:
+Start the backend.
+
 ```bash
 npm start
 ```
 
-You should see: `SoulCloset+ backend running on http://localhost:4000`
+---
 
-## Step 3 — Set up the frontend (in a second terminal)
+### 3. Frontend Setup
+
+Open another terminal.
 
 ```bash
 cd client
+
 npm install
+
 npm run dev
 ```
 
-It will print a local URL, usually `http://localhost:5173`. Open that in
-your browser — that's the app.
+Visit
 
-## Step 4 — Try it
+```
+http://localhost:5173
+```
 
-Add a piece of clothing, try Mood Mirror, try the Aesthetic Profile, list
-something on AuraSwap. Check `server/data/db.json` — you'll see your data
-sitting there in plain JSON. That file is your database.
+---
 
-## Step 5 — Deploying it live (so you have a real link for LinkedIn/resume)
+## Environment Variable
 
-This needs two deployments, one for each folder:
+```
+ANTHROPIC_API_KEY=
+```
 
-**Backend** → a host that runs Node servers continuously, e.g. Render.com
-or Railway.app (both have free tiers):
-1. Push this whole project to a GitHub repo
-2. On Render/Railway, create a new "Web Service", point it at the `server`
-   folder
-3. Set the environment variable `ANTHROPIC_API_KEY` in their dashboard
-   (never commit your real `.env` file to GitHub — it's already in
-   `.gitignore`)
-4. It will give you a live URL like `https://soulcloset-api.onrender.com`
+---
 
-**Frontend** → Vercel or Netlify (both free):
-1. Point it at the `client` folder
-2. Before deploying, change every `fetch("/api/...")` in `src/App.jsx` to
-   your live backend URL, e.g. `fetch("https://soulcloset-api.onrender.com/api/...")`
-   (in dev, the Vite proxy handles this for you automatically — in
-   production there's no proxy, so this step is required)
-3. Deploy — you'll get a live link like `https://soulcloset.vercel.app`
+## AI Features
 
-That live link is what you put on your resume/LinkedIn/GitHub README.
+The following features require an Anthropic API key with active credits.
 
-## Known limitations (worth mentioning honestly in your project writeup)
+- Mood Mirror
+- Aesthetic Profile
+- AI Photo Tagging
+- AI Upcycling Suggestions
 
-- Single shared closet per backend instance — no login/accounts yet, so
-  it's really a one-person demo unless you add authentication
-- `db.json` isn't a "real" database (Postgres/MongoDB) — fine for a
-  portfolio project, but you'd want to swap this out before any real
-  users touch it
-- AuraSwap "propose swap" just shows a confirmation — no real messaging
-  system yet
+The remaining features of the application work independently.
+
+---
+
+## Future Improvements
+
+- MongoDB integration
+- JWT-based authentication
+- Real-time chat
+- Multi-user support
+- Live deployment with Vercel and Render
+
+---
+
+## Known Limitations
+
+- AI features require an Anthropic API key with available credits.
+- The application currently uses a local JSON database instead of MongoDB.
+- AuraSwap messaging is currently a prototype.
+- Live deployment is planned.
+
+---
+
+## Author
+
+**Anjali Singh**
+
+B.Tech Computer Science Engineering Student
+
+GitHub: https://github.com/Anjalibytes
+
+Project Repository: https://github.com/Anjalibytes/soulcloset-plus

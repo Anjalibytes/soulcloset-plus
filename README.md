@@ -33,27 +33,28 @@ Fast fashion contributes significantly to clothing waste, while many garments re
 
 ### Sign Up
 
-![Signup](<img width="960" height="600" alt="Screenshot 2026-07-07 192747" src="https://github.com/user-attachments/assets/22b74314-a85a-42f4-8476-fb74df789ab2" />
-)
+![Signup]<img width="960" height="600" alt="Screenshot 2026-07-07 192747" src="https://github.com/user-attachments/assets/295dc457-b741-4a7c-a422-16e4e8ddc71c" />
+
 
 ### Login
 
-![Login](<img width="960" height="600" alt="Screenshot 2026-07-07 192817" src="https://github.com/user-attachments/assets/9fc60533-5a92-4b4b-ac5a-05b8feba11ce" />
-)
+![Login]<img width="960" height="600" alt="Screenshot 2026-07-07 192817" src="https://github.com/user-attachments/assets/74781ad3-7e02-401e-9a7c-a7d48240a68a" />
+
 
 ### My Closet
 
-![Dashboard](<img width="960" height="600" alt="Screenshot 2026-07-07 193935" src="https://github.com/user-attachments/assets/b881fa54-50ea-4064-afbb-2d5c438ef22b" />
-)
+![Dashboard<img width="960" height="600" alt="Screenshot 2026-07-07 193935" src="https://github.com/user-attachments/assets/af9774ee-1801-403e-9d26-f8d71b247548" />
+
 
 ### Mood Mirror
 
-![Mood Mirror](assets/screenshots/mood-mirror.png)
+![Mood Mirror]<img width="960" height="600" alt="Screenshot 2026-07-07 194008" src="https://github.com/user-attachments/assets/611e3300-e777-4e96-bb56-ca0959e87d37" />
+
 
 ### AuraSwap
 
-![AuraSwap](<img width="960" height="600" alt="Screenshot 2026-07-07 194008" src="https://github.com/user-attachments/assets/8d4ea3ba-f123-4c3f-ba04-5fde980ab147" />
-)
+![AuraSwap<img width="960" height="600" alt="Screenshot 2026-07-07 194027" src="https://github.com/user-attachments/assets/b911b6f9-2cf3-47b6-8cb7-d4f3448a9293" />
+
 
 ---
 

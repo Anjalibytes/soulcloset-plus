@@ -29,9 +29,7 @@ Fast fashion contributes significantly to clothing waste, while many garments re
 
 ### Landing Page
 
-![Landing](<img width="960" height="600" alt="Screenshot 2026-07-07 192710" src="https://github.com/user-attachments/assets/77b196af-bb80-4623-8f70-3341d94bb035" />
-
-)
+<img width="960" alt="Landing Page" src="https://github.com/user-attachments/assets/77b196af-bb80-4623-8f70-3341d94bb035">
 
 ### Sign Up
 
